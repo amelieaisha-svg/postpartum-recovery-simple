@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Heart, Users, Activity, HandHeart, Baby, ArrowRight, Menu, X } from 'lucide-react'
+import { Heart, Users, Activity, ArrowRight, Menu, X } from 'lucide-react'
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
