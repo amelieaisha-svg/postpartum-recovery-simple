@@ -1,27 +1,7 @@
 {
-  "$schema": "https://json.schemastore.org/wrangler.json",
   "name": "postpartum-recovery-simple",
-  "type": "javascript",
-  "main": ".open-next/worker.js",
-  "site": {
-    "bucket": ".open-next/assets"
-  },
-  "build": {
-    "command": "npm run build",
-    "cwd": "."
-  },
-  "env": {
-    "production": {
-      "routes": [
-        {
-          "pattern": "*",
-          "zone_name": "your-domain.com"
-        }
-      ]
-    }
-  },
   "compatibility_date": "2026-07-06",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+  "assets": {
+    "directory": "./out"
+  }
 }
