@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Heart, Users, Activity, ArrowRight, Menu, X } from 'lucide-react'
+import { LogoBadge, LogoMark } from '@/components/Logo'
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -13,9 +14,7 @@ export default function Home() {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-warmPink rounded-full flex items-center justify-center text-white font-bold text-lg">
-              👭
-            </div>
+            <LogoBadge badgeClassName="w-12 h-12" markClassName="w-7 h-7" />
             <h1 className="text-2xl font-bold text-primary-800">PostpartumRecovery</h1>
           </div>
 
@@ -64,7 +63,7 @@ export default function Home() {
 
           <div className="bg-gradient-to-br from-warmPink to-warmPeach rounded-3xl h-96 flex items-center justify-center shadow-xl">
             <div className="text-center">
-              <div className="text-7xl mb-4">👭</div>
+              <LogoMark className="w-28 h-28 mx-auto mb-4 text-primary-800" />
               <p className="text-primary-900 font-semibold text-lg">Moms Supporting Moms</p>
             </div>
           </div>

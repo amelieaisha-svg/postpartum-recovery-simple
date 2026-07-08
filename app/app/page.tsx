@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { mockUser, mockGroups, mockActivities, mockHelpRequests, mockBabysitters } from '@/lib/mockData'
 import { Menu, X, Users, Activity as ActivityIcon, Heart, Baby } from 'lucide-react'
+import { LogoBadge } from '@/components/Logo'
 
 export default function AppPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -17,9 +18,8 @@ export default function AppPage() {
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3 font-bold">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-warmPink rounded-full flex items-center justify-center text-white text-lg">
-              👭
-            </div>
+            <LogoBadge badgeClassName="w-10 h-10" markClassName="w-6 h-6" />
+
             <h1 className="text-xl font-bold text-primary-800 hidden md:block">PostpartumRecovery</h1>
           </Link>
 
