@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { mockUser, mockGroups, mockActivities, mockHelpRequests, mockBabysitters } from '@/lib/mockData'
-import { Menu, X, Heart, Plus, MapPin } from 'lucide-react'
+import { Menu, X, Heart, Plus, MapPin, Users, Calendar, Sparkles, ArrowRight, MessageCircle, Baby, ChevronRight } from 'lucide-react'
 import { LogoBadge } from '@/components/Logo'
 
 type ModalType = null | 'group' | 'activity' | 'help'
@@ -20,6 +20,16 @@ export default function AppPage() {
   )
 
   const [modal, setModal] = useState<ModalType>(null)
+
+  // Friendly date, set on the client to avoid SSR/build hydration mismatch
+  const [today, setToday] = useState('')
+  useEffect(() => {
+    setToday(new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }))
+  }, [])
+
+  const firstName = mockUser.name?.split(' ')[0]
+  const activityEmoji = (t: string) =>
+    ({ yoga: '🧘‍♀️', exercise: '💪', walk: '🚶‍♀️', picnic: '🧺', social: '☕' } as Record<string, string>)[t] || '🌸'
 
   // ---- form state ----
   const [groupForm, setGroupForm] = useState({ name: '', topic: '', description: '' })
@@ -143,46 +153,165 @@ export default function AppPage() {
       <main className="max-w-7xl mx-auto px-6 py-12">
         {/* Dashboard */}
         {activeTab === 'dashboard' && (
-          <div className="space-y-8">
-            <div className="bg-gradient-to-r from-warmPink to-warmPeach rounded-2xl p-8 shadow-md">
-              <h2 className="text-3xl font-bold text-primary-900 mb-2">Welcome back, {mockUser.name?.split(' ')[0]}! 👋</h2>
-              <p className="text-slate-700">How can we support you today?</p>
+          <div className="space-y-6">
+            {/* Hero */}
+            <div className="relative overflow-hidden bg-gradient-to-br from-warmPink via-babyPink to-warmPeach rounded-3xl p-8 md:p-10 shadow-sm">
+              <div className="relative z-10 max-w-xl">
+                <p className="text-primary-700 font-medium mb-2 h-6">{today}</p>
+                <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-3">
+                  Welcome back, {firstName} 🌸
+                </h2>
+                <p className="text-slate-700 mb-6 leading-relaxed">
+                  You&apos;re doing beautifully. Here&apos;s what&apos;s happening in your community today.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <button onClick={() => setActiveTab('activities')} className="btn-primary flex items-center gap-2">
+                    Browse activities <ArrowRight size={18} />
+                  </button>
+                  <button
+                    onClick={() => setModal('help')}
+                    className="bg-white/70 backdrop-blur text-primary-800 font-semibold px-5 py-2.5 rounded-full hover:bg-white transition-colors"
+                  >
+                    Ask for help
+                  </button>
+                </div>
+              </div>
+              <div className="hidden md:block absolute -right-4 -bottom-6 opacity-95">
+                <LogoBadge badgeClassName="w-48 h-48 shadow-md" />
+              </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
-              <div className="bg-white rounded-xl shadow-md p-6 text-center">
-                <div className="text-3xl font-bold text-primary-600 mb-2">{groups.length}</div>
-                <p className="text-slate-600">Groups</p>
-              </div>
-              <div className="bg-white rounded-xl shadow-md p-6 text-center">
-                <div className="text-3xl font-bold text-warmPeach mb-2">{activities.length}</div>
-                <p className="text-slate-600">Activities</p>
-              </div>
-              <div className="bg-white rounded-xl shadow-md p-6 text-center">
-                <div className="text-3xl font-bold text-warmPink mb-2">{openHelpRequests.length}</div>
-                <p className="text-slate-600">Help Requests</p>
-              </div>
+            {/* Stats */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { label: 'Groups', value: groups.length, icon: Users, chip: 'bg-blue-100 text-blue-600', tab: 'community' as const },
+                { label: 'Activities', value: activities.length, icon: Calendar, chip: 'bg-warmPeach text-primary-700', tab: 'activities' as const },
+                { label: 'Open help', value: openHelpRequests.length, icon: Heart, chip: 'bg-warmPink text-primary-800', tab: 'help' as const },
+                { label: 'Babysitters', value: mockBabysitters.length, icon: Baby, chip: 'bg-purple-100 text-purple-600', tab: 'babysitters' as const },
+              ].map((s) => (
+                <button
+                  key={s.label}
+                  onClick={() => setActiveTab(s.tab)}
+                  className="bg-white rounded-2xl shadow-sm p-5 text-left hover:shadow-md hover:-translate-y-0.5 transition-all"
+                >
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${s.chip}`}>
+                    <s.icon size={20} />
+                  </div>
+                  <div className="text-2xl font-bold text-primary-900">{s.value}</div>
+                  <p className="text-sm text-slate-500">{s.label}</p>
+                </button>
+              ))}
             </div>
 
-            <div className="bg-white rounded-2xl shadow-md p-8">
-              <h3 className="text-2xl font-bold text-primary-900 mb-6">Quick Actions</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <button onClick={() => setActiveTab('community')} className="bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl p-6 hover:shadow-lg transition-shadow text-center">
-                  <div className="text-4xl mb-3">💬</div>
-                  <h5 className="font-semibold text-slate-900">Community</h5>
-                </button>
-                <button onClick={() => setActiveTab('activities')} className="bg-gradient-to-br from-warmPeach to-warmPeach/50 rounded-xl p-6 hover:shadow-lg transition-shadow text-center">
-                  <div className="text-4xl mb-3">🧘</div>
-                  <h5 className="font-semibold text-slate-900">Activities</h5>
-                </button>
-                <button onClick={() => setActiveTab('help')} className="bg-gradient-to-br from-warmPink to-warmPink/50 rounded-xl p-6 hover:shadow-lg transition-shadow text-center">
-                  <div className="text-4xl mb-3">🤝</div>
-                  <h5 className="font-semibold text-slate-900">Help</h5>
-                </button>
-                <button onClick={() => setActiveTab('babysitters')} className="bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl p-6 hover:shadow-lg transition-shadow text-center">
-                  <div className="text-4xl mb-3">👶</div>
-                  <h5 className="font-semibold text-slate-900">Babysitters</h5>
-                </button>
+            {/* Main grid */}
+            <div className="grid lg:grid-cols-3 gap-6">
+              {/* Left column */}
+              <div className="lg:col-span-2 space-y-6">
+                {/* Upcoming activities */}
+                <section className="bg-white rounded-2xl shadow-sm p-6">
+                  <div className="flex items-center justify-between mb-5">
+                    <h3 className="text-lg font-bold text-primary-900">Upcoming activities</h3>
+                    <button onClick={() => setActiveTab('activities')} className="text-sm font-semibold text-primary-600 hover:text-primary-700 flex items-center gap-1">
+                      See all <ChevronRight size={16} />
+                    </button>
+                  </div>
+                  <div className="space-y-3">
+                    {activities.slice(0, 3).map((a) => (
+                      <button
+                        key={a.id}
+                        onClick={() => setActiveTab('activities')}
+                        className="w-full flex items-center gap-4 p-3 rounded-xl hover:bg-creamBg/60 transition-colors text-left"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-warmPeach/50 flex items-center justify-center text-2xl shrink-0">
+                          {activityEmoji(a.type)}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-semibold text-primary-900 truncate">{a.title}</p>
+                          <p className="text-sm text-slate-500 truncate">
+                            {a.date} · {a.time}
+                            {a.location === 'Virtual' || a.distanceKm === 0
+                              ? ' · Online'
+                              : ` · ${a.distanceKm} km away`}
+                          </p>
+                        </div>
+                        <ChevronRight size={18} className="text-slate-300 shrink-0" />
+                      </button>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Community help */}
+                <section className="bg-white rounded-2xl shadow-sm p-6">
+                  <div className="flex items-center justify-between mb-5">
+                    <h3 className="text-lg font-bold text-primary-900">Moms who need a hand</h3>
+                    <button onClick={() => setActiveTab('help')} className="text-sm font-semibold text-primary-600 hover:text-primary-700 flex items-center gap-1">
+                      See all <ChevronRight size={16} />
+                    </button>
+                  </div>
+                  {openHelpRequests.length === 0 ? (
+                    <p className="text-slate-500 text-sm">No open requests right now — all caught up!</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {openHelpRequests.slice(0, 3).map((r) => (
+                        <button
+                          key={r.id}
+                          onClick={() => setActiveTab('help')}
+                          className="w-full flex items-center gap-4 p-3 rounded-xl hover:bg-creamBg/60 transition-colors text-left"
+                        >
+                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl shrink-0 ${r.mode === 'offer' ? 'bg-blue-50' : 'bg-warmPink/40'}`}>
+                            {r.mode === 'offer' ? '🙌' : '🙏'}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-semibold text-primary-900 truncate">{r.title}</p>
+                            <p className="text-sm text-slate-500 truncate">{r.type} · by {r.requestedBy.name}</p>
+                          </div>
+                          <span className="text-xs font-semibold text-primary-600 shrink-0">
+                            {r.mode === 'offer' ? 'Reach out' : 'Offer help'}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              </div>
+
+              {/* Right column */}
+              <div className="space-y-6">
+                {/* Quick actions */}
+                <section className="bg-white rounded-2xl shadow-sm p-6">
+                  <h3 className="text-lg font-bold text-primary-900 mb-4">Quick actions</h3>
+                  <div className="space-y-2">
+                    {[
+                      { label: 'Start a group chat', icon: MessageCircle, chip: 'bg-blue-100 text-blue-600', onClick: () => setModal('group') },
+                      { label: 'Create an activity', icon: Calendar, chip: 'bg-warmPeach text-primary-700', onClick: () => setModal('activity') },
+                      { label: 'Request or offer help', icon: Heart, chip: 'bg-warmPink text-primary-800', onClick: () => setModal('help') },
+                      { label: 'Find a babysitter', icon: Baby, chip: 'bg-purple-100 text-purple-600', onClick: () => setActiveTab('babysitters') },
+                    ].map((q) => (
+                      <button
+                        key={q.label}
+                        onClick={q.onClick}
+                        className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-creamBg/60 transition-colors text-left"
+                      >
+                        <div className={`w-9 h-9 rounded-lg flex items-center justify-center ${q.chip}`}>
+                          <q.icon size={18} />
+                        </div>
+                        <span className="font-medium text-slate-700 flex-1">{q.label}</span>
+                        <ChevronRight size={16} className="text-slate-300" />
+                      </button>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Wellness card */}
+                <section className="bg-babyPink rounded-2xl p-6 shadow-sm">
+                  <div className="flex items-center gap-2 mb-3 text-primary-800">
+                    <Sparkles size={18} />
+                    <span className="font-semibold text-sm uppercase tracking-wide">Gentle reminder</span>
+                  </div>
+                  <p className="text-primary-900 text-lg font-medium leading-relaxed">
+                    Rest is productive too. Take a slow breath — you and your baby are exactly where you need to be. 💗
+                  </p>
+                </section>
               </div>
             </div>
           </div>
