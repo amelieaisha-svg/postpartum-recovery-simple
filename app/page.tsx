@@ -76,11 +76,11 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 -m-4 bg-babyPink/40 rounded-[2.5rem] blur-2xl" aria-hidden />
-            <div className="relative bg-babyPinkSoft rounded-[2rem] aspect-square max-w-md mx-auto flex items-center justify-center shadow-sm ring-1 ring-black/5">
+            <div className="absolute inset-0 -m-4 bg-warmPink/40 rounded-[2.5rem] blur-2xl" aria-hidden />
+            <div className="relative bg-gradient-to-br from-[#f7dbe2] via-[#f3ccd6] to-[#eec3cf] rounded-[2rem] aspect-square max-w-md mx-auto flex items-center justify-center shadow-sm ring-1 ring-black/5">
               <div className="text-center px-6">
                 <LogoBadge badgeClassName="w-44 h-44 mx-auto mb-5" markClassName="w-28 h-28" />
-                <p className="text-2xl md:text-3xl font-bold text-[#9d5468]">Moms Supporting Moms</p>
+                <p className="text-2xl md:text-3xl font-bold text-[#894257]">Moms Supporting Moms</p>
               </div>
             </div>
           </div>
