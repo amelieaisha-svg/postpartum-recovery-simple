@@ -47,8 +47,8 @@ export default function Home() {
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-6 pt-16 pb-20 md:pt-24 md:pb-28">
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <div>
-            <span className="inline-flex items-center gap-2 bg-babyPink text-[#9d5468] text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+          <div className="bg-gradient-to-br from-[#fdf0f4] to-[#fbe7ee] rounded-[2rem] p-8 md:p-10 shadow-sm ring-1 ring-black/5">
+            <span className="inline-flex items-center gap-2 bg-white/70 text-[#9d5468] text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
               <Heart size={14} /> A gentle community for new moms
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-900 mb-6 leading-[1.1] tracking-tight">
