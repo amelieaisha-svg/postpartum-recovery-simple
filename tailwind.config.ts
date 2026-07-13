@@ -23,6 +23,8 @@ const config: Config = {
         warmPink: '#e8c9c9',
         warmPeach: '#e6d1c1',
         creamBg: '#f5e6d3',
+        babyPink: '#f9d4dd',
+        babyPinkSoft: '#fce6eb',
       },
     },
   },

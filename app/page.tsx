@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Heart, Users, Activity, ArrowRight, Menu, X } from 'lucide-react'
-import { LogoBadge, LogoMark } from '@/components/Logo'
+import { LogoBadge } from '@/components/Logo'
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -63,7 +63,7 @@ export default function Home() {
 
           <div className="bg-gradient-to-br from-warmPink to-warmPeach rounded-3xl h-96 flex items-center justify-center shadow-xl">
             <div className="text-center">
-              <LogoMark className="w-28 h-28 mx-auto mb-4 text-primary-800" />
+              <LogoBadge badgeClassName="w-40 h-40 mx-auto mb-4" markClassName="w-28 h-28" />
               <p className="text-primary-900 font-semibold text-lg">Moms Supporting Moms</p>
             </div>
           </div>
