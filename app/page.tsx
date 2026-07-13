@@ -47,7 +47,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="bg-babyPink rounded-3xl p-8 md:p-10 shadow-sm">
             <h2 className="text-5xl font-bold text-primary-900 mb-6 leading-tight">
               Your postpartum journey, together
             </h2>
@@ -61,10 +61,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-warmPink to-warmPeach rounded-3xl h-96 flex items-center justify-center shadow-xl">
+          <div className="bg-babyPinkSoft rounded-3xl h-96 flex items-center justify-center shadow-sm ring-1 ring-black/5">
             <div className="text-center">
               <LogoBadge badgeClassName="w-40 h-40 mx-auto mb-4" markClassName="w-28 h-28" />
-              <p className="text-primary-900 font-semibold text-lg">Moms Supporting Moms</p>
+              <p className="text-2xl md:text-3xl font-bold text-[#9d5468]">Moms Supporting Moms</p>
             </div>
           </div>
         </div>
