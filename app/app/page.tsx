@@ -111,7 +111,7 @@ export default function AppPage() {
         <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-3 font-bold">
             <LogoBadge badgeClassName="w-10 h-10" markClassName="w-7 h-7" />
-            <h1 className="text-xl font-bold text-primary-800 hidden md:block">PostpartumRecovery</h1>
+            <h1 className="font-display text-xl font-bold text-primary-800 hidden md:block">Postpartum<span className="text-[#a85c6e]">Recovery</span></h1>
           </Link>
 
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden">
@@ -155,10 +155,10 @@ export default function AppPage() {
         {activeTab === 'dashboard' && (
           <div className="space-y-6">
             {/* Hero */}
-            <div className="relative overflow-hidden bg-gradient-to-br from-warmPink via-babyPink to-warmPeach rounded-3xl p-8 md:p-10 shadow-sm">
+            <div className="relative overflow-hidden bg-gradient-to-br from-blush via-blushSoft to-creamBg rounded-3xl p-8 md:p-10 shadow-sm ring-1 ring-black/5">
               <div className="relative z-10 max-w-xl">
                 <p className="text-primary-700 font-medium mb-2 h-6">{today}</p>
-                <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-3">
+                <h2 className="font-display text-4xl md:text-5xl text-primary-900 mb-3">
                   Welcome back, {firstName} 🌸
                 </h2>
                 <p className="text-slate-700 mb-6 leading-relaxed">
@@ -322,7 +322,7 @@ export default function AppPage() {
           <div>
             <div className="flex items-start justify-between mb-8 gap-4">
               <div>
-                <h1 className="text-4xl font-bold text-primary-900 mb-2">Community Groups</h1>
+                <h1 className="font-display text-4xl md:text-5xl text-primary-900 mb-2">Community Groups</h1>
                 <p className="text-slate-700">Connect with moms around topics that matter to you</p>
               </div>
               <button onClick={() => setModal('group')} className="btn-primary flex items-center gap-2 shrink-0">
@@ -355,7 +355,7 @@ export default function AppPage() {
           <div>
             <div className="flex items-start justify-between mb-8 gap-4">
               <div>
-                <h1 className="text-4xl font-bold text-primary-900 mb-2">Activities</h1>
+                <h1 className="font-display text-4xl md:text-5xl text-primary-900 mb-2">Activities</h1>
                 <p className="text-slate-700">Join yoga, walks, exercise classes, and more</p>
               </div>
               <button onClick={() => setModal('activity')} className="btn-primary flex items-center gap-2 shrink-0">
@@ -395,7 +395,7 @@ export default function AppPage() {
           <div>
             <div className="flex items-start justify-between mb-8 gap-4">
               <div>
-                <h1 className="text-4xl font-bold text-primary-900 mb-2">Help & Support</h1>
+                <h1 className="font-display text-4xl md:text-5xl text-primary-900 mb-2">Help & Support</h1>
                 <p className="text-slate-700">Request help or offer support to your community</p>
               </div>
               <button onClick={() => setModal('help')} className="btn-primary flex items-center gap-2 shrink-0">
@@ -449,7 +449,7 @@ export default function AppPage() {
         {/* Babysitters */}
         {activeTab === 'babysitters' && (
           <div>
-            <h1 className="text-4xl font-bold text-primary-900 mb-2">Babysitters</h1>
+            <h1 className="font-display text-4xl md:text-5xl text-primary-900 mb-2">Babysitters</h1>
             <p className="text-slate-700 mb-8">Find trusted childcare in your community</p>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -506,7 +506,7 @@ export default function AppPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold text-primary-900">
+              <h3 className="font-display text-2xl font-bold text-primary-900">
                 {modal === 'group' && 'New Group Chat'}
                 {modal === 'activity' && 'New Activity'}
                 {modal === 'help' && 'New Post'}

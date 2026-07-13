@@ -23,7 +23,7 @@ export default function Home() {
         <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <LogoBadge badgeClassName="w-11 h-11" markClassName="w-7 h-7" />
-            <h1 className="text-xl font-bold text-primary-800 tracking-tight">PostpartumRecovery</h1>
+            <h1 className="font-display text-xl font-bold text-primary-800">Postpartum<span className="text-[#a85c6e]">Recovery</span></h1>
           </div>
 
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden text-primary-800">
@@ -84,7 +84,7 @@ export default function Home() {
 
           <div className="relative">
             <div className="absolute inset-0 -m-4 bg-warmPink/30 rounded-[2.5rem] blur-2xl" aria-hidden />
-            <div className="relative bg-[#f3d7df] rounded-[2rem] aspect-square max-w-md mx-auto flex items-center justify-center shadow-sm ring-1 ring-black/5">
+            <div className="relative bg-blush rounded-[2rem] aspect-square max-w-md mx-auto flex items-center justify-center shadow-sm ring-1 ring-black/5">
               <div className="text-center px-6">
                 <LogoBadge badgeClassName="w-44 h-44 mx-auto mb-5" markClassName="w-28 h-28" />
                 <p className="font-display text-3xl md:text-4xl text-[#894257]">Moms Supporting Moms</p>
@@ -143,7 +143,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div className="flex items-center gap-3">
             <LogoBadge badgeClassName="w-9 h-9" markClassName="w-5 h-5" />
-            <span className="font-bold text-primary-800">PostpartumRecovery</span>
+            <span className="font-display font-bold text-primary-800">Postpartum<span className="text-[#a85c6e]">Recovery</span></span>
           </div>
           <p className="text-slate-500 text-sm">Supporting moms through their postpartum journey.</p>
           <p className="text-slate-400 text-sm">&copy; 2026 PostpartumRecovery</p>
