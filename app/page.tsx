@@ -53,7 +53,7 @@ export default function Home() {
 
         <div className="relative grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div>
-            <span className="inline-flex items-center gap-2 bg-babyPink text-[#9d5468] text-sm font-semibold px-4 py-1.5 rounded-full mb-6">
+            <span className="inline-flex items-center gap-2 bg-blushSoft text-[#9d5468] text-sm font-semibold px-4 py-1.5 rounded-full mb-6 ring-1 ring-black/5">
               <Heart size={14} /> A gentle community for new moms
             </span>
             <h2 className="font-display text-5xl md:text-6xl lg:text-7xl text-primary-900 mb-6 leading-[1.05]">
@@ -84,7 +84,7 @@ export default function Home() {
 
           <div className="relative">
             <div className="absolute inset-0 -m-4 bg-warmPink/30 rounded-[2.5rem] blur-2xl" aria-hidden />
-            <div className="relative bg-blush rounded-[2rem] aspect-square max-w-md mx-auto flex items-center justify-center shadow-sm ring-1 ring-black/5">
+            <div className="relative bg-blushSoft rounded-[2rem] aspect-square max-w-md mx-auto flex items-center justify-center shadow-sm ring-1 ring-black/5">
               <div className="text-center px-6">
                 <LogoBadge badgeClassName="w-44 h-44 mx-auto mb-5" markClassName="w-28 h-28" />
                 <p className="font-display text-3xl md:text-4xl text-[#894257]">Moms Supporting Moms</p>
